@@ -1,0 +1,65 @@
+<div class="card" *ngIf="laptop()">
+  <div class="card-header">
+    {{ pageTitle() }}
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">Brand:</div>
+      <div class="col-md-6">{{ laptop()?.brand }}</div>
+      <div class="col-md-3">
+        <button class="btn btn-primary" (click)="addToCart(laptop())">
+          Add to Cart
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Model:</div>
+      <div class="col-md-6">{{ laptop()?.model }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Price (in credits):</div>
+      <div class="col-md-6">
+        $
+        {{ laptop()?.price | number : "1.2-2" }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Graphics card:</div>
+      <div class="col-md-6">{{ laptop()?.graphicsCard }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Battery life:</div>
+      <div class="col-md-6">{{ laptop()?.batteryLife }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3">Display size:</div>
+      <div class="col-md-6">{{ laptop()?.displaySize }}</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">Compatible peripheral devices:</div>
+      <div *ngIf="isLoading(); else loaded">
+        <div class="spinner-container">
+          <span>Loading compatible devices...</span>
+          <br />
+          <div class="spinner"></div>
+        </div>
+      </div>
+      <ng-template #loaded>
+        <div class="col-md-6">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let device of peripheralDevices()"
+            >
+              {{ device.type }} - {{ device.brand }} - {{ device.model }} - ${{
+                device.price | number : "1.2-2"
+              }}
+            </li>
+          </ul>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

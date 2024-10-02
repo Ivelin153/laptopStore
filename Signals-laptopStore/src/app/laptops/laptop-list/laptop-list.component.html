@@ -1,0 +1,27 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+
+  <div *ngIf="filteredLaptops() as laptopi">
+    <div class="card-body" *ngIf="laptopi.length">
+      <div class="list-group">
+        <button
+          type="button"
+          class="list-group-item"
+          *ngFor="let laptop of laptopi"
+          [ngClass]="{
+            active: laptop?.model === selectedLaptop()?.model
+          }"
+          (click)="onSelected(laptop.model)"
+        >
+          {{ laptop.model }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

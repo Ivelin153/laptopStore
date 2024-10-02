@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header">
+    {{ pageTitle }}
+  </div>
+
+  <div class="card-body" *ngIf="filteredLaptops$ | async as laptops">
+    <div class="list-group">
+      <button
+        type="button"
+        class="list-group-item"
+        *ngFor="let laptop of laptops"
+        [ngClass]="{
+          active: laptop?.model === (selectedLaptop$ | async)?.model
+        }"
+        (click)="onSelected(laptop.model)"
+      >
+        {{ laptop.model }}
+      </button>
+    </div>
+  </div>
+
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

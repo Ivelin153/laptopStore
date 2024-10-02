@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-4">Filter By:</div>
+  <div class="col-md-8 text-lg-start">
+    <input type="text" [(ngModel)]="laptopsFilter" />
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <app-laptop-list [filter]="laptopsFilter"></app-laptop-list>
+  </div>
+  <div class="col-md-8">
+    <app-laptop-details></app-laptop-details>
+  </div>
+</div>
